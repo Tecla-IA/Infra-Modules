@@ -12,7 +12,7 @@ provider "azurerm" {
 
 
 module "rg_test" {
-  source              = "../../"
+  source              = "../../modules/resource-groups"
   resource_group_name = "test-rg"
   location            = "eastus"
   tags = {
