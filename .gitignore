@@ -25,3 +25,5 @@ out/
 
 # Lambda deployment packages
 *.zip
+
+node_modules/
