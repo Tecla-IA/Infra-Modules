@@ -29,10 +29,8 @@ module "linux_web_app_test" {
   web_app_name                                   = "tecla-test-web-app"
   node_version                                   = "20-lts"
   sku_name                                       = "P0v3"
-  # webdeploy_publish_basic_authentication_enabled = true
+  
   environment_variables = {
-    # "EXAMPLE_VAR"                    = "example_value"
-    # "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true"
     "WEBSITE_RUN_FROM_PACKAGE" = 1
   }
   tags = {

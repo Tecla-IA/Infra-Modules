@@ -39,7 +39,7 @@ resource "azurerm_linux_web_app" "webapp" {
 
 resource "azurerm_linux_web_app_slot" "slot" {
   for_each       = var.slots
-  name           = "${var.web_app_name}-${each.key}"
+  name           = "${each.key}"
   app_service_id = azurerm_linux_web_app.webapp.id
   app_settings   = each.value.app_settings
   tags           = merge(var.tags, each.value.tags != null ? each.value.tags : {})
