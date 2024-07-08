@@ -22,14 +22,16 @@ module "rg_test" {
 }
 
 module "linux_web_app_test" {
-  source                                         = "../../modules/linux-web-app"
-  resource_group_name                            = module.rg_test.resource_group_name
-  location                                       = module.rg_test.location
-  app_service_plan_name                          = "tecla-test-app-service-plan"
-  web_app_name                                   = "tecla-test-web-app"
-  node_version                                   = "20-lts"
-  sku_name                                       = "P0v3"
-  
+  source                = "../../modules/linux-web-app"
+  resource_group_name   = module.rg_test.resource_group_name
+  location              = module.rg_test.location
+  app_service_plan_name = "tecla-test-app-service-plan"
+  web_app_name          = "tecla-test-web-app"
+  node_version          = "20-lts"
+  sku_name              = "P0v3"
+  root_domain           = "teclatest.com"
+  # custom_hostname       = "teclatest.com"
+
   environment_variables = {
     "WEBSITE_RUN_FROM_PACKAGE" = 1
   }

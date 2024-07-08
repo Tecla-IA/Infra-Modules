@@ -13,6 +13,7 @@ variable "app_service_plan_name" {
   type        = string
 }
 
+
 variable "web_app_name" {
   description = "The name of the Linux web app."
   type        = string
@@ -35,6 +36,19 @@ variable "webdeploy_publish_basic_authentication_enabled" {
   description = "Enable or disable basic authentication for Web Deploy publishing."
   type        = bool
   default     = false
+}
+
+
+variable "root_domain" {
+  description = "(Optional) The name of the custom hostname"
+  type        = string
+  default     = null
+}
+
+variable "www_domain" {
+  description = "(Optional) The name of the www custom hostname"
+  type        = string
+  default     = null
 }
 
 
