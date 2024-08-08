@@ -25,6 +25,7 @@ resource "azurerm_linux_web_app" "webapp" {
   site_config {
     always_on  = true
     ftps_state = "Disabled"
+    app_command_line = var.app_command_line
 
 
     application_stack {

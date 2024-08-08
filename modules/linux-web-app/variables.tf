@@ -45,6 +45,12 @@ variable "root_domain" {
   default     = null
 }
 
+variable "app_command_line" {
+  description = "(Optional) The app startup command"
+  type        = string
+  default     = null
+}
+
 variable "www_domain" {
   description = "(Optional) The name of the www custom hostname"
   type        = string
