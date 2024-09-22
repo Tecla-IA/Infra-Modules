@@ -3,6 +3,11 @@ output "postgresql_server_id" {
   value       = azurerm_postgresql_flexible_server.postgresql_server.id
 }
 
+output "postgresql_default_db" {
+  description = "The database created with the module"
+  value       = var.default_db
+}
+
 output "postgresql_server_fqdn" {
   description = "The FQDN of the PostgreSQL Flexible Server."
   value       = azurerm_postgresql_flexible_server.postgresql_server.fqdn
