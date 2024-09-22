@@ -24,6 +24,13 @@ resource "azurerm_postgresql_flexible_server" "postgresql_server" {
   tags = var.tags
 }
 
+
+resource "azurerm_postgresql_flexible_server_database" "default_db" {
+  name      = var.default_db
+  server_id = module.postgresql.postgresql_server_id
+  charset   = "UTF8"
+}
+
 resource "azurerm_postgresql_flexible_server_firewall_rule" "allow_access" {
   name      = "AllowAccess"
   server_id = azurerm_postgresql_flexible_server.postgresql_server.id

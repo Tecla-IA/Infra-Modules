@@ -88,3 +88,8 @@ variable "zone" {
   type        = string
   default     = null
 }
+
+variable "default_db" {
+  description = "Default database"
+  type        = string
+}
