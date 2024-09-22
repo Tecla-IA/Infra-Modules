@@ -27,7 +27,7 @@ resource "azurerm_postgresql_flexible_server" "postgresql_server" {
 
 resource "azurerm_postgresql_flexible_server_database" "default_db" {
   name      = var.default_db
-  server_id = azurerm_postgresql_flexible_server.postgresql_server.postgresql_server_id
+  server_id = azurerm_postgresql_flexible_server.postgresql_server.id
   charset   = "UTF8"
 }
 
