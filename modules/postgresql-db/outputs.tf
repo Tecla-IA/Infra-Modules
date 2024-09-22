@@ -37,4 +37,5 @@ output "postgresql_connection_string_with_password" {
     5432,
     "postgres"
   )
+  sensitive = true
 }
