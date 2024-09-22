@@ -18,18 +18,27 @@ resource "azurerm_linux_web_app" "webapp" {
   resource_group_name = data.azurerm_resource_group.rg.name
   service_plan_id     = azurerm_service_plan.app_plan.id
 
-  app_settings = var.environment_variables
+
+  app_settings = merge(
+    var.environment_variables,
+    var.container_image_name != null ? {
+      "WEBSITES_PORT" = var.website_port,
+    } : {}
+  )
 
   webdeploy_publish_basic_authentication_enabled = var.webdeploy_publish_basic_authentication_enabled
 
   site_config {
-    always_on  = true
-    ftps_state = "Disabled"
+    always_on        = true
+    ftps_state       = "Disabled"
     app_command_line = var.app_command_line
 
-
     application_stack {
-      node_version = var.node_version
+      docker_image_name       = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
+      docker_registry_url     = var.container_registry_server
+      docker_registry_username = var.container_registry_username
+      docker_registry_password = var.container_registry_password
+      node_version            = var.container_image_name == null ? var.node_version : null
     }
   }
   identity {
@@ -43,14 +52,26 @@ resource "azurerm_linux_web_app_slot" "slot" {
   for_each       = var.slots
   name           = each.key
   app_service_id = azurerm_linux_web_app.webapp.id
-  app_settings   = each.value.app_settings
   tags           = merge(var.tags, each.value.tags != null ? each.value.tags : {})
+
+  app_settings = merge(
+    each.value.app_settings,
+    var.container_image_name != null ? {
+      "WEBSITES_PORT" = var.website_port
+    } : {}
+  )
 
   webdeploy_publish_basic_authentication_enabled = var.webdeploy_publish_basic_authentication_enabled
   site_config {
-    always_on = true
+    always_on        = true
+    app_command_line = var.app_command_line
+
     application_stack {
-      node_version = var.node_version
+      docker_image_name       = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
+      docker_registry_url     = var.container_registry_server
+      docker_registry_username = var.container_registry_username
+      docker_registry_password = var.container_registry_password
+      node_version            = var.container_image_name == null ? var.node_version : null
     }
   }
 }

@@ -79,3 +79,39 @@ variable "slots" {
   description = "(Optional) Map of slot configurations where each key is a slot name and value is a map of its settings, particularly app settings."
   default     = {}
 }
+
+variable "container_image_name" {
+  description = "(Optional) The name of the container image to deploy."
+  type        = string
+  default     = null
+}
+
+variable "container_image_tag" {
+  description = "(Optional) The tag of the container image to deploy."
+  type        = string
+  default     = "latest"
+}
+
+variable "container_registry_server" {
+  description = "(Optional) The container registry server (e.g., myregistry.azurecr.io). Required if using a private registry."
+  type        = string
+  default     = null
+}
+
+variable "container_registry_username" {
+  description = "(Optional) The username for the container registry. Required if using a private registry."
+  type        = string
+  default     = null
+}
+
+variable "container_registry_password" {
+  description = "(Optional) The password for the container registry. Required if using a private registry."
+  type        = string
+  default     = null
+}
+
+variable "website_port" {
+  description = "(Optional) Port the web app listens on. Required when deploying a custom Docker image."
+  type        = string
+  default     = null
+}
