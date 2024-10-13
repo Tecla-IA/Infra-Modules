@@ -4,7 +4,7 @@ data "azurerm_resource_group" "rg" {
 
 resource "azurerm_service_plan" "app_plan" {
   name                = var.app_service_plan_name
-  location            = data.azurerm_resource_group.rg.location
+  location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name
 
   sku_name = var.sku_name
@@ -14,7 +14,7 @@ resource "azurerm_service_plan" "app_plan" {
 
 resource "azurerm_linux_web_app" "webapp" {
   name                = var.web_app_name
-  location            = data.azurerm_resource_group.rg.location
+  location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name
   service_plan_id     = azurerm_service_plan.app_plan.id
 
@@ -34,11 +34,11 @@ resource "azurerm_linux_web_app" "webapp" {
     app_command_line = var.app_command_line
 
     application_stack {
-      docker_image_name       = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
-      docker_registry_url     = var.container_registry_server
+      docker_image_name        = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
+      docker_registry_url      = var.container_registry_server
       docker_registry_username = var.container_registry_username
       docker_registry_password = var.container_registry_password
-      node_version            = var.container_image_name == null ? var.node_version : null
+      node_version             = var.container_image_name == null ? var.node_version : null
     }
   }
   identity {
@@ -67,11 +67,11 @@ resource "azurerm_linux_web_app_slot" "slot" {
     app_command_line = var.app_command_line
 
     application_stack {
-      docker_image_name       = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
-      docker_registry_url     = var.container_registry_server
+      docker_image_name        = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
+      docker_registry_url      = var.container_registry_server
       docker_registry_username = var.container_registry_username
       docker_registry_password = var.container_registry_password
-      node_version            = var.container_image_name == null ? var.node_version : null
+      node_version             = var.container_image_name == null ? var.node_version : null
     }
   }
 }
