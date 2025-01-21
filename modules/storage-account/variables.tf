@@ -19,7 +19,25 @@ variable "account_replication_type" {
 }
 
 variable "tags" {
-  description = "(Optional) A mapping of tags to assign to the resource."
+  description = "A mapping of tags to assign to the resource."
   type        = map(any)
   default     = {}
+}
+
+variable "enable_static_website" {
+  description = "If true, enable static website hosting on this storage account."
+  type        = bool
+  default     = false
+}
+
+variable "index_document" {
+  description = "The default index document for the static website."
+  type        = string
+  default     = "index.html"
+}
+
+variable "error_404_document" {
+  description = "The custom 404/error document for the static website."
+  type        = string
+  default     = "index.html"
 }
