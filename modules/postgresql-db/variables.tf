@@ -93,3 +93,8 @@ variable "default_db" {
   description = "Default database"
   type        = string
 }
+variable "additional_databases" {
+  type        = list(string)
+  default     = []
+  description = "A list of additional PostgreSQL databases to create."
+}

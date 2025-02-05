@@ -38,3 +38,11 @@ resource "azurerm_postgresql_flexible_server_firewall_rule" "allow_access" {
   start_ip_address = var.start_ip_address
   end_ip_address   = var.end_ip_address
 }
+
+resource "azurerm_postgresql_flexible_server_database" "additional" {
+  for_each = toset(var.additional_databases)
+
+  name      = each.value
+  server_id = azurerm_postgresql_flexible_server.postgresql_server.id
+  charset   = "UTF8"
+}

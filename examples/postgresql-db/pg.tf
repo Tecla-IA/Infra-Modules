@@ -33,6 +33,8 @@ module "postgresql" {
   storage_mb             = 32768
   default_db             = "test"
 
+  additional_databases = ["additional1", "additional2"]
+
 
   tags = {
     environment = "TEST"
