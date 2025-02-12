@@ -35,7 +35,7 @@ resource "azurerm_linux_web_app" "webapp" {
 
     application_stack {
       docker_image_name        = var.container_image_name != null ? "${var.container_image_name}:${var.container_image_tag}" : null
-      docker_registry_url      = var.container_registry_server != null ? var.container_registry_server : "https://docker.io"
+      docker_registry_url      = var.container_registry_server != null ? var.container_registry_server : var.container_image_name ? "https://docker.io" : null
       docker_registry_username = var.container_registry_username
       docker_registry_password = var.container_registry_password
       node_version             = var.container_image_name == null ? var.python_version ? null : var.node_version : null
