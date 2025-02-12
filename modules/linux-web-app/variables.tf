@@ -92,6 +92,12 @@ variable "container_image_tag" {
   default     = "latest"
 }
 
+variable "python_version" {
+  description = "(Optional) The version of the python app."
+  type        = string
+  default     = null
+}
+
 variable "container_registry_server" {
   description = "(Optional) The container registry server (e.g., myregistry.azurecr.io). Required if using a private registry."
   type        = string
