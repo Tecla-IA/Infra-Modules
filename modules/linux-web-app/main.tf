@@ -39,7 +39,7 @@ resource "azurerm_linux_web_app" "webapp" {
       docker_registry_username = var.container_registry_username
       docker_registry_password = var.container_registry_password
       node_version             = var.container_image_name == null ? var.python_version ? null : var.node_version : null
-      python_version           = var.container_image_name == null ? var.python_version ? var.python_version : nulll : null
+      python_version           = var.container_image_name == null ? var.python_version ? var.python_version : null : null
     }
   }
   identity {
